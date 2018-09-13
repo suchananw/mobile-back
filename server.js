@@ -2,15 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const knex = require('knex')
+const knex = require('knex');
+const DB_NAME = require('./database').DB_NAME;
+const DB_USER = require('./database').DB_USER;
+const DB_PASS = require('./database').DB_PASS;
 
 const db = knex({
   client: 'pg',
   connection: {
     host : '127.0.0.1',
-    user : 'billbill',
-    password : '1234',
-    database : 'postgres'
+    user : DB_USER,
+    password : DB_PASS,
+    database : DB_NAME
   }
 });
 
