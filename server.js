@@ -36,44 +36,66 @@ function generateToken(user) {
   return token
 }
 
-app.get('/userToken', (req, res) => {
+//middleware that checks if JWT token exists and verifies it if it does exist.
+//In all the future routes, this helps to know if the request is authenticated or not.
+app.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
-  let token = req.headers['authorization'];
-  if (!token) {
-    return res.status(401).json({
-      success: false,
-      message: 'No token'
-    });
-  }
+  var token = req.headers['authorization'];
+  if (!token) return next(); //if no token, continue
+
   token = token.replace('Bearer ', '');
-  
-  let verified = jwt.verify(token, 'secret', (err, user) => {
+
+  jwt.verify(token, 'secret', function(err, user) {
     if (err) {
       return res.status(401).json({
         success: false,
         message: 'Please register Log in using a valid email'
       });
     } else {
-      return res.json({
-        user : {
-          username : user.username,
-          email : user.email
-        }
-      })
+      req.user = user; //set the user to req so other routes can use it
+      next();
     }
-  })
-  if (verified) {
-    db.select('*').from('login')
-      .where('email', '=', user.email)
-      .then(login => {
-        return res.json({
-          user: user,
-          token : login.token
-        })
-      })
-      .catch(err => res.status(400).json('unable to get token'))
-  }
-})
+  });
+});
+
+// app.get('/userToken', (req, res) => {
+//   // check header or url parameters or post parameters for token
+//   let token = req.headers['authorization'];
+//   if (!token) {
+//     return res.status(401).json({
+//       success: false,
+//       message: 'No token'
+//     });
+//   }
+//   token = token.replace('Bearer ', '');
+  
+//   let verified = jwt.verify(token, 'secret', (err, user) => {
+//     if (err) {
+//       return res.status(401).json({
+//         success: false,
+//         message: 'Please register Log in using a valid email'
+//       });
+//     } else {
+//       return res.json({
+//         user : {
+//           username : user.username,
+//           email : user.email
+//         }
+//       })
+//     }
+//   })
+//   if (verified) {
+//     db.select('*').from('login')
+//       .where('email', '=', user.email)
+//       .then(login => {
+//         return res.json({
+//           user: verify,
+//           token : login.token
+//         })
+//       })
+//       .catch(err => res.status(400).json('unable to get token'))
+//   }
+// })
 
 app.post('/signin', (req, res) => {
   db.select('email', 'hash').from('login')
@@ -143,6 +165,41 @@ app.get('/profile/:id', (req, res) => {
       }
     })
     .catch(err => res.status(400).json('error getting user'))
+})
+
+app.get('/users', (req, res) => {
+  const { id } = req.params;
+  db.select('*').from('users')
+    .then(user => {
+      if (user.length) {
+        res.json(user)
+      } else {
+        res.status(400).json('Not found')
+      }
+    })
+    .catch(err => res.status(400).json('error getting users'))
+})
+
+app.put('/addCat/:query', (req, res) => {
+  
+})
+
+app.get('/search/:query', (req, res) => {
+  const { query } = req.params;
+  db.select('*').from('cats').where({
+    breed : query.breed,
+    gender : query.gender,
+    color: query.color
+  }).andWhereBetween(
+    'price',[query.minPrice,query.maxPrice]
+  ).then(selectedCat => {
+    if (selectedCat.length) {
+      res.json(selectedCat)
+    } else {
+      res.status(400).json('Not found')
+    }
+  })
+  .catch(err => res.status(400).json('error getting cat'))
 })
 
 app.listen(3001, ()=> {
