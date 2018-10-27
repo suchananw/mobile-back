@@ -4,8 +4,8 @@ const cors = require("cors");
 const passport = require("passport");
 
 const users = require("./routes/api/users");
-const profile = require("./routes/api/profile");
-const shop = require("./routes/api/shop");
+// const profile = require("./routes/api/profile");
+const cat = require("./routes/api/cat");
 
 const app = express();
 app.use(cors());
@@ -20,8 +20,8 @@ require("./config/passport")(passport);
 
 // Use Routes
 app.use("/api/users", users);
-app.use("/api/profile", profile);
-app.use("/api/shop", shop);
+// app.use("/api/profile", profile);
+app.use("/api/cat", cat);
 
 // app.get('/search/:query', (req, res) => {
 //   const { query } = req.params;
