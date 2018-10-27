@@ -1,0 +1,27 @@
+.footer { 
+    display: block;
+    background: #222;
+    text-align: center;
+    width: 100%;
+    padding: 17px 0 18px 0;
+    padding-top: 4vh;
+    height: inherit;
+ }
+p {
+  color: black;
+}
+
+  
+  /* responsive footer fix by Aalaap Ghag 
+  This is where the magic happens */
+ /* @media (max-width: 767px) {
+  
+    footer  {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  
+  .container {
+    max-width: 940px;
+  } */
