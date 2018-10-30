@@ -18,7 +18,7 @@ class Home extends Component {
     if (cats === null || loading) {
       content = "Loading...";
     } else {
-      content = cats.map(cat => <Show name={cat.name} img={cat.img} />);
+      content = cats.map(cat => <Show cat={cat} />);
     }
 
     return (

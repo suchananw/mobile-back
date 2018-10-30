@@ -6,35 +6,52 @@ const data = [
   {
     id: 1,
     name: "pithi",
-    img: "https://i.ytimg.com/vi/YCaGYUIfdy4/maxresdefault.jpg",
+    img: "https://azure.wgp-cdn.co.uk/app-yourcat/posts/koratmain.jpg?&width=1200&height=600&mode=crop",
     age: "1",
-    breed: "booboooo",
+    breed: "Korat",
     gender: "female"
   },
   {
     id: 2,
     name: "mana",
-    img: "https://i.ytimg.com/vi/YCaGYUIfdy4/maxresdefault.jpg",
-    age: "1",
-    breed: "hello",
+    img: "https://i0.wp.com/www.quiet-corner.com/wp-content/uploads/2016/07/fgn-1.jpg?fit=710%2C472&ssl=1",
+    age: "5",
+    breed: "Bombay",
     gender: "female"
   },
   {
     id: 3,
     name: "lulu",
-    img: "https://i.ytimg.com/vi/YCaGYUIfdy4/maxresdefault.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsrD9eKyAqOtbwqb5E8dFPD5tPTd-4r4vEIpX4QMXu-DrmmEhTTA",
     age: "1",
-    breed: "hello",
+    breed: "Siberian",
     gender: "male"
   },
   {
     id: 4,
     name: "manee",
-    img: "https://i.ytimg.com/vi/YCaGYUIfdy4/maxresdefault.jpg",
+    img: "https://vetstreet.brightspotcdn.com/dims4/default/69fe629/2147483647/thumbnail/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F86%2F974690a33511e087a80050568d634f%2Ffile%2FSphynx-2-645mk062211.jpg",
     age: "1",
-    breed: "hello",
+    breed: "Sphynx",
+    gender: "male"
+  },
+  {
+    id: 5,
+    name: "choojai",
+    img: "http://www.malaysiacatclub.com/breeds/korat1.jpg",
+    age: "2.5",
+    breed: "Korat",
+    gender: "female"
+  },
+  {
+    id: 6,
+    name: "weera",
+    img: "https://i.ytimg.com/vi/YCaGYUIfdy4/maxresdefault.jpg",
+    age: "3",
+    breed: "Scottish Fold",
     gender: "male"
   }
+
 ];
 
 // @route   GET api/cat/test

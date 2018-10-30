@@ -3,10 +3,10 @@ import axios from "axios";
 import { GET_CAT, GET_CATS, CAT_LOADING } from "./types";
 
 // Get current cat
-export const getCurrentCat = () => dispatch => {
+export const getCurrentCat = cat_id => dispatch => {
   dispatch(setCatLoading());
   axios
-    .get("/api/cat")
+    .get(`/api/cat/${cat_id}`)
     .then(res =>
       dispatch({
         type: GET_CAT,
