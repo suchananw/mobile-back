@@ -67,7 +67,7 @@ class SignUp extends Component {
               <DatePicker
                 id="date"
                 dateFormat="DD/MM/YYYY"
-                maxDate={moment().format("YYYY-MM-DD")}
+                maxDate={moment()}
                 onChange={this.onDateChange}
                 selected={this.state.birthday}
               />
